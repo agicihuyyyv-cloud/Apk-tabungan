@@ -8,13 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Unzip and Find
-        run: |
-          unzip -o Tabungan-Android.zip
-          ls -la
-          FOLDER=$(find . -maxdepth 2 -name "gradlew" | head -1 | xargs dirname)
-          echo "FOLDER=$FOLDER" >> $GITHUB_ENV
-          echo "Found folder: $FOLDER"
+      - name: Unzip
+        run: unzip -o Tabungan-Android.zip
       - uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
@@ -24,8 +19,8 @@ jobs:
         with:
           gradle-version: 8.9
           arguments: assembleDebug
-          build-root-directory: ${{ env.FOLDER }}
+          build-root-directory: Tabungan
       - uses: actions/upload-artifact@v4
         with:
           name: Tabungan-APK
-          path: ${{ env.FOLDER }}/app/build/outputs/apk/debug/*.apk
+          path: Tabungan/app/build/outputs/apk/debug/*.apk
