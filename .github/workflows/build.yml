@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Unzip
-        run: unzip -o DuitkuAndroid-v2.zip
+        run: unzip -o Tabungan-Android.zip
       - uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
@@ -19,8 +19,8 @@ jobs:
         with:
           gradle-version: 8.9
           arguments: assembleDebug
-          build-root-directory: DuitkuAndroid
+          build-root-directory: Tabungan-Android
       - uses: actions/upload-artifact@v4
         with:
-          name: Duitku-APK
-          path: DuitkuAndroid/app/build/outputs/apk/debug/*.apk
+          name: Tabungan-APK
+          path: Tabungan-Android/app/build/outputs/apk/debug/*.apk
